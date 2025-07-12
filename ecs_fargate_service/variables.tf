@@ -67,3 +67,24 @@ variable "autoscaling_min" {
   type        = number
   default     = 1
 }
+
+variable "project" {
+  description = "Project name prefix for resource naming."
+  type        = string
+}
+
+variable "environment" {
+  description = "Environment name (e.g., stage, prod) for resource naming."
+  type        = string
+}
+
+variable "service_name" {
+  description = "Unique name for the ECS service (e.g., web, api, etc.)."
+  type        = string
+}
+
+variable "assign_public_ip" {
+  description = "Whether to assign a public IP to the service. Defaults to false."
+  type        = bool
+  default     = false
+}

@@ -1,5 +1,8 @@
+############################################################
+# ECS Fargate Service Resource
+############################################################
 resource "aws_ecs_service" "ecs_fargate_service" {
-  name            = var.name
+  name            = "${var.name}-fargate-${var.environment}"
   cluster         = var.cluster_id
   task_definition = var.task_definition
   desired_count   = var.desired_count
@@ -7,7 +10,7 @@ resource "aws_ecs_service" "ecs_fargate_service" {
   network_configuration {
     subnets          = var.subnet_ids
     security_groups  = var.security_group_ids
-    assign_public_ip = false
+    assign_public_ip = var.assign_public_ip != null ? var.assign_public_ip : false
   }
   load_balancer {
     target_group_arn = var.alb_target_group_arn
